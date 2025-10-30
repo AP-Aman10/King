@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Launcher - Your Digital Gateway</title>
+</head>
+
+<body>
+  <div class="bg-overlay">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <div class="theme-toggle-container">
+        <button id="themeToggle" class="theme-toggle">🌙 Dark</button>
+      </div>
+
+      <h1 class="title">App Launcher</h1>
+      <p class="subtitle">Your stylish digital gateway</p>
+
+      <div class="controls">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search apps..." />
+          <span class="clear-icon" id="clearSearch">✕</span>
+        </div>
+        <button class="btn btn-primary" id="addAppBtn">
+          <span>➕</span>
+          Add App
+        </button>
+      </div>
+
+      <div class="category-filter" id="categoryFilter"></div>
+    </div>
+
+    <div class="grid" id="appGrid"></div>
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <div class="empty-icon">📱</div>
+      <h3 class="empty-title">No apps found</h3>
+      <p class="empty-description" id="emptyDescription">Get started by adding your first app</p>
+      <button class="btn btn-primary" onclick="openAddModal()">
+        <span>➕</span>
+        Add Your First App
+      </button>
+    </div>
+
+    <div class="footer">
+      <p>© 2025 App Launcher — Crafted with care</p>
+    </div>
+  </div>
+
+  <!-- Add/Edit Modal -->
+  <div class="modal" id="appModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Add New App</h2>
+        <p class="modal-description" id="modalDescription">Fill in the details below to add a new app.</p>
+      </div>
+      <form id="appForm">
+        <div class="form-group">
+          <label class="form-label">App Name</label>
+          <input type="text" class="form-input" id="appName" placeholder="e.g., YouTube" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">URL</label>
+          <input type="url" class="form-input" id="appUrl" placeholder="https://example.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Icon URL</label>
+          <input type="url" class="form-input" id="appIcon" placeholder="https://example.com/icon.png" required />
+          <div class="icon-preview" id="iconPreview"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="appDescription" placeholder="Brief description of the app"
+            required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="appCategory" required>
+            <option value="Social">Social</option>
+            <option value="Productivity">Productivity</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Development">Development</option>
+            <option value="Game">Game</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Add App</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal" id="deleteModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Delete App</h2>
+        <p class="modal-description">Are you sure you want to delete <strong id="deleteAppName"></strong>? This action
+          cannot be undone.</p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button type="button" class="btn btn-destructive" onclick="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
